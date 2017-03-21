@@ -12,7 +12,7 @@ unsigned char ShuffleBitsA(unsigned char c)
 	if((c >> 3) & 1) result |= (1 << 2);
 	if((c >> 2) & 1) result |= (1 << 3);
 	if((c >> 5) & 1) result |= (1 << 4);
-	if((c >> 4) & 1) result |= (1 << 5);
+	if((c >> 4) & 1) result |= (1 << 5);	
 	if((c >> 7) & 1) result |= (1 << 6);
 	if((c >> 6) & 1) result |= (1 << 7);
 
@@ -34,6 +34,8 @@ unsigned char ShuffleBitsB(unsigned char c)
 
 	return result;
 }
+
+
 //Shuffling bits. If shift is odd do or_eq on result.
 unsigned char ShuffleBitsC(unsigned char c) {
   unsigned char result = 0;

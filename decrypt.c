@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
   // Computation of "characteristic number" and measuring time.
   double computationStartTime = get_wall_seconds();
   double chnum = get_wall_seconds();
-  long double characteristicNumber= ComputeNumber1(buf0, fileSize, 3, func11rep, n_threads);
+  long double characteristicNumber= ComputeNumber1(buf0, fileSize, func11rep, n_threads);
   double timechnum = get_wall_seconds() - chnum;
   printf("timechnum = %lf\n",  timechnum);
   printf("filesize = %d, mod 4 = %d\n", fileSize, fileSize%4);
@@ -71,7 +71,8 @@ int main(int argc, char** argv) {
   relative_err3 = (characteristicNumber - characteristic_img3) / characteristic_img3;
   relative_errM = (characteristicNumber - characteristic_Musi) / characteristic_Musi;
   relative_errt = (characteristicNumber - characteristic_text) / characteristic_text;*/
-
+  long double characteristic_Musi = 2371800.421340139;
+  long double relative_errM = (characteristicNumber - characteristic_Musi) / characteristic_Musi;
   int i;
   //Parallelising loop with n_threads number of threads using openmp
   #pragma omp parallel for num_threads(n_threads) 
@@ -115,7 +116,7 @@ int main(int argc, char** argv) {
     return -1;
   }
   
-  printf("Done. Output file '%s' written OK, %d bytes. characteristicNumber = %10.16Lf\n", output_file_name, fileSize, characteristicNumber);
+  printf("Done. Output file '%s' written OK, %d bytes. characteristicNumber = %10.16Lf \nRelative error music = %8.16Le\n", output_file_name, fileSize, characteristicNumber, relative_errM);
 
   free(buf0);
   free(buf1);
